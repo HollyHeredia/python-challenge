@@ -10,11 +10,13 @@ with open(bank_csv, 'r') as csvfile:
 
 # Define/skip the header
 csv_header = next(bank_reader)
+for row in bank_reader:
+    print(row)
 
 # Definition block. Set variables and indexes to 0
-net_total = 0
 total_index = []
 difference_index = []
+net_total_index = []
 profit_difference = 0
 greatest_gain = 0
 lamest_lost = 0
@@ -33,8 +35,8 @@ for row in bank_reader:
 
         # Look at profit/losses column
         profit_losses = int(row[1])
-        # Add profit/losses to a total
-        net_total = profit_losses + net_total
+        # Add profit_losses to Net total
+        net_total_index.append(profit_losses)
         # Find the difference for greatest/lamest indications later
         profit_difference = profit_losses - profit_difference
         difference_index.append(profit_difference)
@@ -47,8 +49,11 @@ for row in bank_reader:
         # Reset profit difference
         profit_difference = row[1]
 
-#calculations
-average_total = int(net_total/total_month)
+#calculations for average
+# Adding together profit differences
+net_profit_difference = sum(difference_index/len(difference_index)) 
+# Round integer
+net_profit_difference = round(net_profit_difference,2)
 
 # Finding the max and min for the profit/losses
 greatest_gain = difference_index.index(max(difference_index))
@@ -60,8 +65,8 @@ lamest_month = (date[int(lamest_lost)], min(difference_index))
 print(f'Financial Analysis:')
 print(f'_____________________')
 print(f'Total months: {total_month}')
-print(f'Total: $ {net_total}')
-print(f'Average Change: $ int{average_total}')
+print(f'Total: $ {sum(net_total_index)}')
+print(f'Average Change: $ int{net_profit_difference}')
 print(f'Greatest Increase in Profits:  {greatest_month}   {greatest_gain}')
 print(f'Greatest Decrease in Profits:  {lamest_month}    {lamest_lost}')
 
@@ -74,7 +79,7 @@ with open(PyBank_Holly, 'w') as txtfile:
     textfile.write(f'Financial Analysis:')
     textfile.write(f'___________________')
     textfile.write(f'Total months: {total_month}')
-    textfile.write(f'Total: $ {net_total}')
-    textfile.write(f'Average Change: $(int{average_total})')
+    textfile.write(f'Total: $ {sum(net_total_index)}')
+    textfile.write(f'Average Change: $(int{net_profit_difference})')
     textfile.write(f'Greatest Increase in Profits: {greatest_month}  {greatest_gain}')
     textfile.write(f'Greatest Decrease in Profits: {lamest_month}    {lamest_lost}')

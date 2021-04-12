@@ -11,7 +11,6 @@ with open(bank_csv, 'r') as csvfile:
 # Define/skip the header
 csv_header = next(bank_reader)
 for row in bank_reader:
-    print(row)
 
 # Definition block. Set variables and indexes to 0
 total_index = []
@@ -76,10 +75,10 @@ PyBank_Holly = os.path.join(PyBank_Solved.txt)
 
 # Open file to write
 with open(PyBank_Holly, 'w') as txtfile:
-    textfile.write(f'Financial Analysis:')
-    textfile.write(f'___________________')
-    textfile.write(f'Total months: {total_month}')
-    textfile.write(f'Total: $ {sum(net_total_index)}')
-    textfile.write(f'Average Change: $(int{net_profit_difference})')
-    textfile.write(f'Greatest Increase in Profits: {greatest_month}  {greatest_gain}')
-    textfile.write(f'Greatest Decrease in Profits: {lamest_month}    {lamest_lost}')
+    txtfile.write(f'Financial Analysis:')
+    txtfile.write(f'___________________')
+    txtfile.write(f'Total months: {total_month}')
+    txtfile.write(f'Total: $ {sum(net_total_index)}')
+    txtfile.write(f'Average Change: $(int{net_profit_difference})')
+    txtfile.write(f'Greatest Increase in Profits: {greatest_month}  {greatest_gain}')
+    txtfile.write(f'Greatest Decrease in Profits: {lamest_month}    {lamest_lost}')

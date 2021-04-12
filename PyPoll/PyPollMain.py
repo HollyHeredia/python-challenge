@@ -2,7 +2,7 @@
 import os
 import csv
 
-poll_csv=os.path.join('Resources','PyPoll_Resource.csv')
+poll_csv=os.path.join('CodeResources','PyPoll_Resource_file.csv')
 
 with open(poll_csv) as csvfile:
     csvreader = csv.reader(poll_csv, delimiter=',')
